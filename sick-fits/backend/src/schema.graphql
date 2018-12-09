@@ -1,7 +1,22 @@
+type Dog {
+  id: ID!
+  name: String!
+  age: Float!
+}
+
+
+
+input DogInput {
+  name: String!
+  age: Float!
+}
+
+
 type Mutation {
+  createDog (dog: DogInput!): Dog
   hi: String
 }
 
 type Query {
-  hi: String
+  dogs: [Dog!]!
 }
