@@ -1,14 +1,18 @@
-const { v4: uuid } = require('uuid');
+// const { v4: uuid } = require('uuid');
+
+const { forwardTo } = require('prisma-binding');
 
 
 
 module.exports = {
-  createDog: (parent, args, ctx, info) => {
-    console.log('createDog:', args);
-    return {
-      id: uuid(),
-      name: args.dog.name,
-      age: args.dog.age,
-    };
-  }
+  createItem: forwardTo('db'),
+  // createItem: async (parent, args, ctx, info) => {
+  //   const newItem = await ctx.db.mutation.createItem({
+  //     data: {
+  //       ...args.item
+  //     }
+  //   }, info);
+  //   console.log('newItem:', newItem);
+  //   return newItem;
+  // },
 };

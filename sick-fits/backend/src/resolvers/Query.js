@@ -1,26 +1,13 @@
-const { v4: uuid } = require('uuid');
+// const { v4: uuid } = require('uuid');
 
+const { forwardTo } = require('prisma-binding');
 
 
 module.exports = {
-  dogs: (parent, args, ctx, info) => {
-    console.log('dogs:', parent, args, ctx, info);
-    return [
-      {
-        id: uuid(),
-        name: 'Hans Dog',
-        age: 5,
-      },
-      {
-        id: uuid(),
-        name: 'Klaus Dog',
-        age: 6,
-      },
-      {
-        id: uuid(),
-        name: 'Yussuf Dog',
-        age: 8,
-      },
-    ];
-  }
+  items: forwardTo('db'),
+  // items: async (parent, args, ctx, info) => {
+  //   const items = await ctx.db.query.items();
+  //   console.log('items:', items);
+  //   return items;
+  // },
 };
