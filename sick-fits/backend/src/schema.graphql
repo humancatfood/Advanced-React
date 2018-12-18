@@ -1,8 +1,9 @@
-# import { Item, ItemCreateInput } from './generated/prisma.graphql'
+# import { Item, ItemCreateInput, ItemWhereUniqueInput } from './generated/prisma.graphql'
 
 
 type Query {
   items: [Item!]!
+  item (where: ItemWhereUniqueInput): Item
 }
 
 type Mutation {

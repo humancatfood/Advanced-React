@@ -4,10 +4,10 @@ import ItemList from './../components/Items';
 
 
 
-const Home = () => (
+const ItemPage = () => (
   <div>
-    <ItemList />
+    <ItemList  />
   </div>
 );
 
-export default Home;
+export default ItemPage;
