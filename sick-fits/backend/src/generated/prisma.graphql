@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/jan-borchers-b66e0d/backend/dev
-# timestamp: Mon Dec 10 2018 16:36:33 GMT+0000 (Greenwich Mean Time)
+# timestamp: Mon Dec 17 2018 00:43:01 GMT+0000 (Greenwich Mean Time)
 
 type AggregateItem {
   count: Int!
@@ -20,9 +20,9 @@ type Item implements Node {
   id: ID!
   title: String!
   description: String!
-  image: String!
-  largeImage: String!
   price: Int!
+  image: String
+  largeImage: String
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -40,9 +40,9 @@ type ItemConnection {
 input ItemCreateInput {
   title: String!
   description: String!
-  image: String!
-  largeImage: String!
   price: Int!
+  image: String
+  largeImage: String
 }
 
 """An edge in a connection."""
@@ -61,12 +61,12 @@ enum ItemOrderByInput {
   title_DESC
   description_ASC
   description_DESC
+  price_ASC
+  price_DESC
   image_ASC
   image_DESC
   largeImage_ASC
   largeImage_DESC
-  price_ASC
-  price_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -77,9 +77,9 @@ type ItemPreviousValues {
   id: ID!
   title: String!
   description: String!
-  image: String!
-  largeImage: String!
   price: Int!
+  image: String
+  largeImage: String
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -126,17 +126,17 @@ input ItemSubscriptionWhereInput {
 input ItemUpdateInput {
   title: String
   description: String
+  price: Int
   image: String
   largeImage: String
-  price: Int
 }
 
 input ItemUpdateManyMutationInput {
   title: String
   description: String
+  price: Int
   image: String
   largeImage: String
-  price: Int
 }
 
 input ItemWhereInput {
@@ -268,6 +268,28 @@ input ItemWhereInput {
 
   """All values not ending with the given string."""
   description_not_ends_with: String
+  price: Int
+
+  """All values that are not equal to given value."""
+  price_not: Int
+
+  """All values that are contained in given list."""
+  price_in: [Int!]
+
+  """All values that are not contained in given list."""
+  price_not_in: [Int!]
+
+  """All values less than the given value."""
+  price_lt: Int
+
+  """All values less than or equal the given value."""
+  price_lte: Int
+
+  """All values greater than the given value."""
+  price_gt: Int
+
+  """All values greater than or equal the given value."""
+  price_gte: Int
   image: String
 
   """All values that are not equal to given value."""
@@ -348,28 +370,6 @@ input ItemWhereInput {
 
   """All values not ending with the given string."""
   largeImage_not_ends_with: String
-  price: Int
-
-  """All values that are not equal to given value."""
-  price_not: Int
-
-  """All values that are contained in given list."""
-  price_in: [Int!]
-
-  """All values that are not contained in given list."""
-  price_not_in: [Int!]
-
-  """All values less than the given value."""
-  price_lt: Int
-
-  """All values less than or equal the given value."""
-  price_lte: Int
-
-  """All values greater than the given value."""
-  price_gt: Int
-
-  """All values greater than or equal the given value."""
-  price_gte: Int
   createdAt: DateTime
 
   """All values that are not equal to given value."""
