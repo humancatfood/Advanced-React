@@ -6,6 +6,7 @@ const { forwardTo } = require('prisma-binding');
 
 module.exports = {
   createItem: forwardTo('db'),
+  updateItem: forwardTo('db'),
   // createItem: async (parent, args, ctx, info) => {
   //   const newItem = await ctx.db.mutation.createItem({
   //     data: {

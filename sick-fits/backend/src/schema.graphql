@@ -1,4 +1,4 @@
-# import { Item, ItemCreateInput, ItemWhereUniqueInput } from './generated/prisma.graphql'
+# import { Item, ItemCreateInput, ItemUpdateInput, ItemWhereUniqueInput} from './generated/prisma.graphql'
 
 
 type Query {
@@ -8,4 +8,5 @@ type Query {
 
 type Mutation {
   createItem (data: ItemCreateInput!): Item
+  updateItem (data: ItemUpdateInput!, where: ItemWhereUniqueInput): Item
 }
