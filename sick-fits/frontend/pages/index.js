@@ -1,13 +1,3 @@
-import React from 'react';
+import ItemListPage from './items';
 
-import ItemList from './../components/Items';
-
-
-
-const Home = () => (
-  <div>
-    <ItemList />
-  </div>
-);
-
-export default Home;
+export default ItemListPage;

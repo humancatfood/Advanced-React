@@ -1,13 +1,13 @@
-import React from 'react';
+import readAllItems from './../components/data-hocs/readAllItems';
 
 import ItemList from './../components/Items';
 
 
 
-const ItemPage = () => (
-  <div>
-    <ItemList  />
-  </div>
-);
+const ItemListPage = () => readAllItems(({ items, isloading, error }) => ItemList({
+  items,
+  isloading,
+  error,
+}));
 
-export default ItemPage;
+export default ItemListPage;

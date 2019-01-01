@@ -1,13 +1,18 @@
 import React from 'react';
 
-import DisplayItem from './../components/DisplayItem';
+import readItem from './../components/data-hocs/readItem';
+
+import ErrorMessage from './../components/ErrorMessage';
+import Item from './../components/Item';
 
 
 
-const ItemPage = ({ query }) => (
-  <div>
-    <DisplayItem id={query.id} />
-  </div>
-);
+const ItemPage = ({ query: { id } }) => readItem(id, ({ item, isloading, error }) => (
+  <>
+    { isloading && 'loading...' }
+    <ErrorMessage error={error} />
+    { item && <Item item={item} /> }
+  </>
+));
 
 export default ItemPage;

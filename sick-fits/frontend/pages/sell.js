@@ -1,13 +1,30 @@
-import React from 'react';
+import Router from 'next/router';
 
-import CreateItem from './../components/CreateItem';
+import ItemForm from '../components/ItemForm';
+import withCreateItem from './../components/data-hocs/createItem';
 
 
 
-const Sell = () => (
-  <div>
-    <CreateItem />
-  </div>
-);
+const SellPage = () => withCreateItem(({ createItem, isLoading, error }) => ItemForm({
+  defaultIitem: {
+    title: '',
+    price: 0,
+    description: ''
+  },
+  onSubmit: async item => {
+    const result = await createItem({
+      variables: { ...item }
+    });
+    Router.push({
+      pathname: '/item',
+      query: {
+        id: result.data.createItem.id,
+      }
+    });
+  },
+  isLoading,
+  error,
+}));
 
-export default Sell;
+
+export default SellPage;
