@@ -1,11 +1,14 @@
 require('dotenv').config({ path: 'variables.env' });
 
+// const getUploadsMiddleware = require('./uploads.js');
+
 const createServer = require('./createServer.js');
-const db = require('./db.js');
 
 
 
 const server = createServer();
+
+// getUploadsMiddleware(server.express);
 
 server.start({
   cors: {

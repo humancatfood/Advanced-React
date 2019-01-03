@@ -50,8 +50,6 @@ const updateItem = (id, children) =>
         data: updateItem,
       })}
 
-      update={(...args) => console.log('update:', args)}
-
       children={(updateItem, { loading: isUpdatingItem, error: writeError}) =>
         children({
           item,

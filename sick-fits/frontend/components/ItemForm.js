@@ -6,14 +6,37 @@ import DisplayError from './ErrorMessage';
 
 
 
-const ItemForm = ({ defaultIitem:  { title, price, description }, isLoading, error, onSubmit }) => (
+const ItemForm = ({ defaultItem:  { title, price, description }, isLoading, error, onSubmit }) => (
   <Form
-    onSubmit={e => {
+    onSubmit={async e => {
       e.preventDefault();
+
+      const { title, price, description, image } = e.target;
+      const file = image.files[0];
+      let fileName, fileNameLarge;
+      if (file) {
+        const fd = new FormData();
+        fd.append('upload_preset', 'sick-fits-items');
+        fd.append('tags', 'browser_upload');
+        fd.append('file', file);
+        const result = await fetch('https://api.cloudinary.com/v1_1/humancatfood/upload', {
+          method: 'POST',
+          body: fd,
+        }).then(response => response.json());
+
+        fileName = result.eager[0].secure_url;
+        fileNameLarge = result.secure_url;
+
+      } else {
+        fileName = fileNameLarge = '';
+      }
+
       onSubmit({
-        title: e.target.title.value,
-        price: parseInt(e.target.price.value),
-        description: e.target.description.value,
+        title: title.value,
+        price: parseInt(price.value),
+        description: description.value,
+        image: fileName,
+        imageLarge: fileNameLarge,
       });
     }}
   >
@@ -52,6 +75,15 @@ const ItemForm = ({ defaultIitem:  { title, price, description }, isLoading, err
           placeholder="Description"
           defaultValue={ description }
           required
+        />
+      </label>
+      <label htmlFor="image">
+            Image
+        <input
+          type="file"
+          id="image"
+          name="image"
+          placeholder="Image"
         />
       </label>
       <button type="submit">Submit</button>
