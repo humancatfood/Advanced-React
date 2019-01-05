@@ -92,7 +92,7 @@ const ItemForm = ({ defaultItem:  { title, price, description }, isLoading, erro
 );
 
 ItemForm.propTypes = {
-  defaultIitem: proptypes.shape({
+  defaultItem: proptypes.shape({
     title: proptypes.string.isRequired,
     price: proptypes.number.isRequired,
     description: proptypes.string

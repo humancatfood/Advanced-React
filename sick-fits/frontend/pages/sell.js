@@ -6,7 +6,7 @@ import withCreateItem from './../components/data-hocs/createItem';
 
 
 const SellPage = () => withCreateItem(({ createItem, isLoading, error }) => ItemForm({
-  defaultIitem: {
+  defaultItem: {
     title: '',
     price: 0,
     description: ''
