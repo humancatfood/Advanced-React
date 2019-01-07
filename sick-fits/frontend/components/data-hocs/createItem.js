@@ -33,7 +33,7 @@ const CREATE_ITEM_MUTATION = gql`
 `;
 
 
-const createItem = children => (
+const withCreateItem = children => (
   <Mutation
     mutation={ CREATE_ITEM_MUTATION }
     update={(cache, { data: { createItem } }) => {
@@ -51,11 +51,11 @@ const createItem = children => (
     }}
   >
     {(createItem, { loading, error }) => children({
-      createItem,
+      onCreateItem: createItem,
       error,
       isLoading: loading,
     })}
   </Mutation>
 );
 
-export default createItem;
+export default withCreateItem;

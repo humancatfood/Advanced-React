@@ -23,7 +23,7 @@ export const READ_ITEM_QUERY = gql`
 `;
 
 
-const readItem = (id, children) => (
+const withReadItem = (id, children) => (
   <Query
     query={ READ_ITEM_QUERY }
     variables={{ id }}
@@ -35,4 +35,4 @@ const readItem = (id, children) => (
   />
 );
 
-export default readItem;
+export default withReadItem;

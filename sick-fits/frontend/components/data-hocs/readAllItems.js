@@ -19,7 +19,7 @@ export const ALL_ITEMS_QUERY = gql`
 `;
 
 
-const createItem = children => (
+const withReadAllItems = children => (
   <Query
     query={ ALL_ITEMS_QUERY }
   >
@@ -31,4 +31,4 @@ const createItem = children => (
   </Query>
 );
 
-export default createItem;
+export default withReadAllItems;

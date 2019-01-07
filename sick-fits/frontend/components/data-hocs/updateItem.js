@@ -2,7 +2,7 @@ import React from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import readItem, { READ_ITEM_QUERY } from './readItem';
+import { READ_ITEM_QUERY } from './readItem';
 
 
 
@@ -38,31 +38,28 @@ const UPDATE_ITEM_MUTATION = gql`
 `;
 
 
-const updateItem = (id, children) =>
+const withUpdateItem = (id, children) => (
+  <Mutation
+    mutation={ UPDATE_ITEM_MUTATION }
+    variables={{ id }}
 
-  readItem(id, ({ item, isLoading: isLoadingItem, error: readError }) => (
-    <Mutation
-      mutation={ UPDATE_ITEM_MUTATION }
-      variables={{ id }}
+    update={(cache, { data: { updateItem } }) => cache.writeQuery({
+      query: READ_ITEM_QUERY,
+      data: updateItem,
+    })}
 
-      update={(cache, { data: { updateItem } }) => cache.writeQuery({
-        query: READ_ITEM_QUERY,
-        data: updateItem,
-      })}
+    children={(updateItem, { loading, error }) =>
+      children({
+        onUpdateItem: item => updateItem({ variables: {
+          ...item,
+          id,
+        }}),
+        error,
+        isLoading: loading,
+      })
+    }
 
-      children={(updateItem, { loading: isUpdatingItem, error: writeError}) =>
-        children({
-          item,
-          updateItem: item => updateItem({ variables: {
-            ...item,
-            id,
-          }}),
-          error: readError || writeError,
-          isLoading: isLoadingItem || isUpdatingItem
-        })
-      }
+  />
+);
 
-    />
-  ));
-
-export default updateItem;
+export default withUpdateItem;

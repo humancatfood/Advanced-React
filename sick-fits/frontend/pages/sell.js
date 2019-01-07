@@ -5,14 +5,14 @@ import withCreateItem from './../components/data-hocs/createItem';
 
 
 
-const SellPage = () => withCreateItem(({ createItem, isLoading, error }) => ItemForm({
+const SellPage = () => withCreateItem(({ onCreateItem, isLoading, error }) => ItemForm({
   defaultItem: {
     title: '',
     price: 0,
     description: ''
   },
   onSubmit: async item => {
-    const result = await createItem({
+    const result = await onCreateItem({
       variables: { ...item }
     });
     Router.push({

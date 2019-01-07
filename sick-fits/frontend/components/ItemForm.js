@@ -6,7 +6,7 @@ import DisplayError from './ErrorMessage';
 
 
 
-const ItemForm = ({ defaultItem:  { title, price, description }, isLoading, error, onSubmit }) => (
+const ItemForm = ({ defaultItem: { title, price, description }, isLoading, error, onSubmit }) => (
   <Form
     onSubmit={async e => {
       e.preventDefault();
