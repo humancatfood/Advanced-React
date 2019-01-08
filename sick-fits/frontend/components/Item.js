@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import Head from 'next/head';
 
 import Title from './styles/Title';
 import ItemStyles from './styles/ItemStyles';
@@ -20,6 +21,11 @@ export default class Item extends Component {
     const { item } = this.props;
     return (
       <ItemStyles>
+
+        <Head>
+          <title>{ item.title }</title>
+        </Head>
+
         {item.image && <img src={item.image} alt={item.title} />}
 
         <Title>
