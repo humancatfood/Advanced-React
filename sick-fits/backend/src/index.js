@@ -1,5 +1,7 @@
 require('dotenv').config({ path: 'variables.env' });
 
+const cookieParser = require('cookie-parser');
+
 // const getUploadsMiddleware = require('./uploads.js');
 
 const createServer = require('./createServer.js');
@@ -7,6 +9,8 @@ const createServer = require('./createServer.js');
 
 
 const server = createServer();
+
+server.express.use(cookieParser());
 
 // getUploadsMiddleware(server.express);
 
