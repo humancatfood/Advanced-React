@@ -12,4 +12,18 @@ module.exports = {
   //   console.log('items:', items);
   //   return items;
   // },
+  me: async (parent, args, ctx, info) => {
+
+    const { userID } = ctx.request;
+
+    if (userID) {
+      return await ctx.db.query.user({
+        where: {
+          id: userID
+        }
+      }, info);
+    } else {
+      return null;
+    }
+  }
 };

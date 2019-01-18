@@ -26,7 +26,7 @@ module.exports = {
       }
     }, info);
 
-    const token = sign({ userId: user.id }, process.env.APP_SECRET);
+    const token = sign({ userID: user.id }, process.env.APP_SECRET);
 
     ctx.response.cookie('token', token, {
       httpOnly: true,
