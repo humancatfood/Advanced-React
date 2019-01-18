@@ -13,4 +13,5 @@ type Mutation {
   updateItem (data: ItemUpdateInput!, where: ItemWhereUniqueInput!): Item
   deleteItem (where: ItemWhereUniqueInput!): Item
   signup (email: String!, password: String!, name: String!): User
+  signin (email: String!, password: String!): User
 }
