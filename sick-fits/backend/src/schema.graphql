@@ -4,6 +4,14 @@ type SuccessMessage {
   message: String
 }
 
+#override User type for reduced public access
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  permissions: [Permission!]!
+}
+
 type Query {
   items (orderBy: ItemOrderByInput, skip: Int, first: Int): [Item!]!
   item (where: ItemWhereUniqueInput): Item
