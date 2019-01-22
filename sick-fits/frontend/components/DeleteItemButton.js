@@ -2,7 +2,7 @@ import React from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { ALL_ITEMS_QUERY } from './data-hocs/readAllItems';
+import { ALL_ITEMS_QUERY } from './../pages/items';
 
 
 

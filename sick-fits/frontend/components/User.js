@@ -1,12 +1,11 @@
-import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 
-
-
-export const READ_USER_QUERY = gql`
-  query READ_USER_QUERY {
+export const CURRENT_USER_QUERY = gql`
+  query CURRENT_USER_QUERY {
     me {
+      id
       email
       name
       permissions
@@ -14,24 +13,14 @@ export const READ_USER_QUERY = gql`
   }
 `;
 
-
-const User = () => (
-  <Query
-    query={ READ_USER_QUERY }
-  >
-    {
-      ({ data: { me: user }, loading, error }) => console.log('me:', user, loading, error) || (
-        <p>
-          {
-            error ? error.msg :
-              loading ? 'loading..' :
-                user ? user.name : '--'
-          }
-        </p>
-      )
-    }
+const User = props => (
+  <Query {...props} query={CURRENT_USER_QUERY}>
+    {payload => props.children(payload)}
   </Query>
 );
 
+User.propTypes = {
+  children: PropTypes.func.isRequired,
+};
 
 export default User;
