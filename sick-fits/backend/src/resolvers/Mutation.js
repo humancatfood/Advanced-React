@@ -61,6 +61,15 @@ module.exports = {
 
   },
 
+  signout: async (parent, args, ctx/* , info */) => {
+
+    ctx.response.clearCookie('token');
+
+    return {
+      message: 'Good Bye!'
+    };
+
+  },
 
   // createItem: async (parent, args, ctx, info) => {
   //   const newItem = await ctx.db.mutation.createItem({
